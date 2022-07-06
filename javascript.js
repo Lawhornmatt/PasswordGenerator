@@ -1,9 +1,9 @@
+// INITIALIZATIONS
 var lwrcharArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
 var uprcharArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 
-var spclcharArray = [ "+", "-", "=", "&", "!", "(", ")", "{", "}", "[", "]", "^",
-"~", "*", "?", ":", "%", "$", "#", "@", ";", "<", ">", "_"];
+var spclcharArray = [ "+", "-", "=", "&", "!", "(", ")", "{", "}", "[", "]", "^", "~", "*", "?", ":", "%", "$", "#", "@", ";", "<", ">", "_"];
 
 var numberArray = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
@@ -12,32 +12,61 @@ var touseArrays = [];
 var newLetter = "";
 var emptyPassword = "";
 
+//ACCESS HTML BY DOM
+
+//Password:
+var generateBtn = document.getElementById("generate");
+var passwordText = document.getElementById("password");
+//Checkboxes:
+var uprcaseBox = document.getElementById("useUprcase");
+var specialsBox = document.getElementById("useSpecials");
+var numbersBox = document.getElementById("useNumbers");
+//Slider:
+var slider = document.getElementById("passLengthSlider");
+var output = document.getElementById("passLengthText");
+
+
+
+function generatePassword() {
+
+  touseArrays = lwrcharArray;
+    
+    if (uprcaseBox.checked) {
+      touseArrays = touseArrays.concat(uprcharArray);
+    }
+
+    if (specialsBox.checked) {
+      touseArrays = touseArrays.concat(spclcharArray);
+    }
+
+    if (numbersBox.checked) {
+      touseArrays = touseArrays.concat(numberArray);
+    }
+    
+    for (let i = 0; i < slider.value; i++) {
+      newLetter = touseArrays[Math.floor(Math.random() * touseArrays.length)];
+      emptyPassword += newLetter;
+    }
+    return emptyPassword;
+}
+
 function resetPassword() {
   emptyPassword = "";
 }
 
-function generatePassword() {
-    for (let i = 0; i < slider.value; i++) {
-      newLetter = lwrcharArray[Math.floor(Math.random() * lwrcharArray.length)];
-      // console.log(newLetter); DEBUG
-      emptyPassword += newLetter;
-    }
-    // console.log(emptyPassword); DEBUG
-    return emptyPassword;
+function emptyArray() {
+  touseArrays = [];
 }
 
-
 // Get references to the #generate & #password elements
-var generateBtn = document.getElementById("generate");
-var passwordText = document.getElementById("password");
+
 
 // Write password to the #password input
 function writePassword() {
-  // console.log("Button was pressed"); DEBUG
   var password = generatePassword();
-  // console.log(password); DEBUG
   passwordText.value = password;
   resetPassword();
+  emptyArray();
 }
 
 // Add event listener to generate button
@@ -46,13 +75,10 @@ generateBtn.addEventListener("click", writePassword);
 
 
 
+// SLIDER CODE:
 
-//Code to make slider work:
-var slider = document.getElementById("passLengthSlider");
-var output = document.getElementById("passLengthText");
 output.value = slider.value; // Display the default slider value
-
-// Update the current slider value (each time you drag the slider handle)
+// Updates the other input method when its correspondent is changed (e.g. slider moves when numbers are typed in box)
 slider.oninput = function() {
   output.value = this.value;
 }
