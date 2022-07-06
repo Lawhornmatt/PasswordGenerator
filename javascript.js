@@ -1,4 +1,5 @@
-// INITIALIZATIONS
+//INITIALIZATIONS
+
 var lwrcharArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
 var uprcharArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
@@ -14,23 +15,32 @@ var emptyPassword = "";
 
 //ACCESS HTML BY DOM
 
-//Password:
+// Password:
 var generateBtn = document.getElementById("generate");
 var passwordText = document.getElementById("password");
-//Checkboxes:
+// Checkboxes:
+var lwrcaseBox = document.getElementById("useLwrcase");
 var uprcaseBox = document.getElementById("useUprcase");
 var specialsBox = document.getElementById("useSpecials");
 var numbersBox = document.getElementById("useNumbers");
-//Slider:
+// Slider:
 var slider = document.getElementById("passLengthSlider");
 var output = document.getElementById("passLengthText");
 
+//FUNCTIONS
 
-
+// Called in beginning of writePassword, generates the password
 function generatePassword() {
 
-  touseArrays = lwrcharArray;
+    if (!lwrcaseBox.checked && !uprcaseBox.checked && !specialsBox.checked && !numbersBox.checked) {
+      emptyPassword = "Check some boxes ya dingus";
+      return emptyPassword;
+    }
     
+    if (lwrcaseBox.checked) {
+      touseArrays = touseArrays.concat(lwrcharArray);
+    }
+
     if (uprcaseBox.checked) {
       touseArrays = touseArrays.concat(uprcharArray);
     }
@@ -50,6 +60,7 @@ function generatePassword() {
     return emptyPassword;
 }
 
+// Both called at end of writePassword, resets the pass generation for next btn press
 function resetPassword() {
   emptyPassword = "";
 }
@@ -58,10 +69,7 @@ function emptyArray() {
   touseArrays = [];
 }
 
-// Get references to the #generate & #password elements
-
-
-// Write password to the #password input
+// Main func, writePassword is called when gnerateBtn is clicked
 function writePassword() {
   var password = generatePassword();
   passwordText.value = password;
