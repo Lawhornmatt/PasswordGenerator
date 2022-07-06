@@ -1,0 +1,15 @@
+/* #list {
+    display: flex;
+    justify-content: center;
+} */
+
+body {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+body h1 {
+    margin: 100px 0 100px 0;
+}
