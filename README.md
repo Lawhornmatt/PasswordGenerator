@@ -15,7 +15,7 @@ I plan on the following options:
 Press the button corresponding to the style of password you want generated.
 
 ## VISIT:
-//TODO: Add link here
+<a href="https://lawhornmatt.github.io/Ch3_PasswordGenerator/" target="_blank">Click here to create a new arbitrary password!/a>
 
 ## SCREENSHOT:
 No screenshot yet
