@@ -50,9 +50,13 @@ generateBtn.addEventListener("click", writePassword);
 //Code to make slider work:
 var slider = document.getElementById("passLengthSlider");
 var output = document.getElementById("passLengthText");
-output.innerHTML = slider.value; // Display the default slider value
+output.value = slider.value; // Display the default slider value
 
 // Update the current slider value (each time you drag the slider handle)
 slider.oninput = function() {
-  output.innerHTML = this.value;
+  output.value = this.value;
+}
+
+output.oninput = function() {
+  slider.value = this.value;
 }

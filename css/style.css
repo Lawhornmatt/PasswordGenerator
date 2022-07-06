@@ -115,6 +115,7 @@ button[disabled] {
 .slidecontainer {
   width: 100%;
   display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -128,6 +129,10 @@ button[disabled] {
 
 .slider:hover {
   opacity: 1;
+}
+
+#passLengthText {
+  max-width: 50px;
 }
 
 .float-right {
