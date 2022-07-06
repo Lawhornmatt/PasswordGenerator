@@ -7,6 +7,8 @@ var spclcharArray = [ "+", "-", "=", "&", "!", "(", ")", "{", "}", "[", "]", "^"
 
 var numberArray = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
+var touseArrays = [];
+
 var newLetter = "";
 var emptyPassword = "";
 
@@ -15,7 +17,7 @@ function resetPassword() {
 }
 
 function generatePassword() {
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < slider.value; i++) {
       newLetter = lwrcharArray[Math.floor(Math.random() * lwrcharArray.length)];
       // console.log(newLetter); DEBUG
       emptyPassword += newLetter;
@@ -40,3 +42,17 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
+
+
+
+
+//Code to make slider work:
+var slider = document.getElementById("passLengthSlider");
+var output = document.getElementById("passLengthText");
+output.innerHTML = slider.value; // Display the default slider value
+
+// Update the current slider value (each time you drag the slider handle)
+slider.oninput = function() {
+  output.innerHTML = this.value;
+}
