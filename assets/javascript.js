@@ -28,6 +28,8 @@ var slider = document.getElementById("passLengthSlider");
 var output = document.getElementById("passLengthText");
 var wordSlider = document.getElementById("wordpassLengthSlider");
 var wordOutput = document.getElementById("wordpassLengthText");
+var numbSlider = document.getElementById("numbpassLengthSlider");
+var numbOutput = document.getElementById("numbpassLengthText");
 
 //FUNCTIONS
 
@@ -96,10 +98,19 @@ slider.oninput = function() {
 output.oninput = function() {
   slider.value = this.value;
 }
+
 wordSlider.oninput = function() {
   wordOutput.value = this.value;
 }
 
 wordOutput.oninput = function() {
   wordSlider.value = this.value;
+}
+
+numbSlider.oninput = function() {
+  numbOutput.value = this.value;
+}
+
+numbOutput.oninput = function() {
+  numbSlider.value = this.value;
 }
