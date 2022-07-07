@@ -8,6 +8,8 @@ var spclcharArray = ["+", "-", "=", "&", "!", "(", ")", "{", "}", "[", "]", "^",
 
 import * as nmbArray from "../libs/numberArray.js";
 
+import * as wrdArray from "../libs/wordsArray.js";
+
 var touseArrays = [];
 
 var newLetter = "";
