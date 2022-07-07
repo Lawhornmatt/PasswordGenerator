@@ -1,12 +1,6 @@
 //INITIALIZATIONS
 
-var lwrcharArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-
-var uprcharArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-
-var spclcharArray = ["+", "-", "=", "&", "!", "(", ")", "{", "}", "[", "]", "^", "~", "*", "?", ":", "%", "$", "#", "@", ";", "<", ">", "_"];
-
-import * as nmbArray from "../libs/numberArray.js";
+import * as dfltArrays from "../libs/defaultArrays.js";
 
 import * as wrdArray from "../libs/wordsArray.js";
 
@@ -44,19 +38,19 @@ function generatePassword() {
     }
     
     if (lwrcaseBox.checked) {
-      touseArrays = touseArrays.concat(lwrcharArray);
+      touseArrays = touseArrays.concat(dfltArrays.lwrcharArray);
     }
 
     if (uprcaseBox.checked) {
-      touseArrays = touseArrays.concat(uprcharArray);
+      touseArrays = touseArrays.concat(dfltArrays.uprcharArray);
     }
 
     if (specialsBox.checked) {
-      touseArrays = touseArrays.concat(spclcharArray);
+      touseArrays = touseArrays.concat(dfltArrays.spclcharArray);
     }
 
     if (numbersBox.checked) {
-      touseArrays = touseArrays.concat(nmbArray.numberArray);
+      touseArrays = touseArrays.concat(dfltArrays.numberArray);
     }
     
     for (let i = 0; i < slider.value; i++) {
