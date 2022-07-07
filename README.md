@@ -7,7 +7,7 @@ I plan on the following options:
 * Choose from two different password styles (random characters OR XKCD style taken from below comic)
 * Variable password length
 
-<img src="./images/XKCD936.png" alt="A silly comic about passwords" width="550"/>
+<img src="./assets/images/XKCD936.png" alt="A silly comic about passwords" width="550"/>
 
 <a href="https://xkcd.com/license.html" target="_blank">License to use</a>
 
