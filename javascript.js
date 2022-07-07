@@ -4,7 +4,7 @@ var lwrcharArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", 
 
 var uprcharArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 
-var spclcharArray = [ "+", "-", "=", "&", "!", "(", ")", "{", "}", "[", "]", "^", "~", "*", "?", ":", "%", "$", "#", "@", ";", "<", ">", "_"];
+var spclcharArray = ["+", "-", "=", "&", "!", "(", ")", "{", "}", "[", "]", "^", "~", "*", "?", ":", "%", "$", "#", "@", ";", "<", ">", "_"];
 
 var numberArray = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
@@ -33,7 +33,7 @@ var output = document.getElementById("passLengthText");
 function generatePassword() {
 
     if (!lwrcaseBox.checked && !uprcaseBox.checked && !specialsBox.checked && !numbersBox.checked) {
-      emptyPassword = "Check some boxes ya dingus";
+      emptyPassword = "Please check at least one option box at minimum";
       return emptyPassword;
     }
     
