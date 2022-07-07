@@ -14,11 +14,16 @@ var emptyPassword = "";
 // Password:
 var generateBtn = document.getElementById("generate");
 var passwordText = document.getElementById("password");
-// Checkboxes:
+// Checkboxes //
+// used in default password generation:
 var lwrcaseBox = document.getElementById("useLwrcase");
 var uprcaseBox = document.getElementById("useUprcase");
 var specialsBox = document.getElementById("useSpecials");
 var numbersBox = document.getElementById("useNumbers");
+// used in option selection:
+var dfltBox = document.getElementById("useDfltOption");
+var xkcdBox = document.getElementById("useXKCDOption");
+
 // Slider(s):
 var slider = document.getElementById("passLengthSlider");
 var output = document.getElementById("passLengthText");
@@ -28,6 +33,16 @@ var numbSlider = document.getElementById("numbpassLengthSlider");
 var numbOutput = document.getElementById("numbpassLengthText");
 
 //FUNCTIONS
+
+//which options to display:
+import * as optionChckbx from "./optionChckbxs.js";
+
+document.onload = optionChckbx.checkDFLTbox();
+document.onload = optionChckbx.checkXKCDbox();
+
+dfltBox.addEventListener("click", optionChckbx.checkDFLTbox);
+xkcdBox.addEventListener("click", optionChckbx.checkXKCDbox);
+
 
 // Called in beginning of writePassword, generates the password
 function generatePassword() {
