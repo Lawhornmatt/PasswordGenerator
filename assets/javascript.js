@@ -23,9 +23,11 @@ var lwrcaseBox = document.getElementById("useLwrcase");
 var uprcaseBox = document.getElementById("useUprcase");
 var specialsBox = document.getElementById("useSpecials");
 var numbersBox = document.getElementById("useNumbers");
-// Slider:
+// Slider(s):
 var slider = document.getElementById("passLengthSlider");
 var output = document.getElementById("passLengthText");
+var wordSlider = document.getElementById("wordpassLengthSlider");
+var wordOutput = document.getElementById("wordpassLengthText");
 
 //FUNCTIONS
 
@@ -93,4 +95,11 @@ slider.oninput = function() {
 
 output.oninput = function() {
   slider.value = this.value;
+}
+wordSlider.oninput = function() {
+  wordOutput.value = this.value;
+}
+
+wordOutput.oninput = function() {
+  wordSlider.value = this.value;
 }

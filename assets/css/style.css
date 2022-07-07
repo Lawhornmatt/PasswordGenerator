@@ -137,8 +137,13 @@ button[disabled] {
   opacity: 1;
 }
 
-#passLengthText {
+.sliderTextBox {
   max-width: 50px;
+}
+
+.sliderLabel {
+  font-size: small;
+  max-width: 20%;
 }
 
 .float-right {
