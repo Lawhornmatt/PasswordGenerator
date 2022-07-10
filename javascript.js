@@ -9,7 +9,6 @@ var spclcharArray = [ "+", "-", "=", "&", "!", "(", ")", "{", "}", "[", "]", "^"
 var numberArray = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
 var touseArrays = [];
-
 var newLetter = "";
 var emptyPassword = "";
 
@@ -22,62 +21,102 @@ var passwordText = document.getElementById("password");
 
 //FUNCTIONS
 
+//Start the prompts for the user, builds the password, and returns the password value back as 'emptyPassword'
 function beginPrompt() {
+
+  //A number counter to make sure people chose at least one option
+  var notenoughOptions = 0;
+
+  //Folks pick how long their password is to be. Must be between the acceptable range. 
+  //It loops infinitely until they pick right. I thought about giving them an escape but they can just refresh if they dont wanna play ball.
   var passLength = prompt("What is the desired password length?", "Choose between 8 and 128");
-  if (8<=passLength<=128) {
-    var passLength = prompt("You chose a length out of bounds.", "Please - choose between 8 and 128");
-  }
-}
+    while (passLength<8 || passLength>128) {
+      var passLength = prompt("You chose a length out of bounds.", "Please - choose between 8 and 128");
+      if (passLength>=8 && passLength<=128) {
+        break;
+      }
+    };
 
-
-// Called in beginning of writePassword, generates the password
-function generatePassword() {
-
-    if (!lwrcaseBox.checked && !uprcaseBox.checked && !specialsBox.checked && !numbersBox.checked) {
-      emptyPassword = "You must make appropriate selections in the given criteria";
-      return emptyPassword;
-    }
-    
-    if (lwrcaseBox.checked) {
+  //The four options (not including password length)
+  //Selecting true concatinates that option's array with the array from which we build the password (i.e. touseArray)
+  //LOWERCASE
+  var lcA = confirm("Shall the password use lowercase letters?");
+    if (lcA == true) {
       touseArrays = touseArrays.concat(lwrcharArray);
-    }
-
-    if (uprcaseBox.checked) {
+      notenoughOptions++;
+    } else {
+      alert("Lowercase letters will not be used.")
+    };
+  //UPPERCASE
+  var ucA = confirm("Shall the password use uppercase letters?");
+    if (ucA == true) {
       touseArrays = touseArrays.concat(uprcharArray);
-    }
-
-    if (specialsBox.checked) {
+      notenoughOptions++;
+    } else {
+      alert("Uppercase letters will not be used.")
+    };
+  //SPECIAL CHARACTERS
+  var spA = confirm("Shall the password use special characters?");
+    if (spA == true) {
       touseArrays = touseArrays.concat(spclcharArray);
-    }
-
-    if (numbersBox.checked) {
+      notenoughOptions++;
+    } else {
+      alert("Special characters will not be used.")
+    };
+  //NUMBERS
+  var nA = confirm("Shall the password use numbers?");
+    if (nA == true) {
       touseArrays = touseArrays.concat(numberArray);
-    }
-    
-    for (let i = 0; i < slider.value; i++) {
-      newLetter = touseArrays[Math.floor(Math.random() * touseArrays.length)];
-      emptyPassword += newLetter;
-    }
+      notenoughOptions++;
+    } else {
+      alert("Numbers will not be used.")
+    };
+
+  //Picking any option will increase this counter higher than 0. 
+  //So if it is zero, they must have picked nothin' and they need to try again.
+  if (notenoughOptions == 0) {
+    alert("Please select at least one of the previous options.");
+    alert("Your password has to be made with *something*");
+    emptyPassword = "Please Try Again"
     return emptyPassword;
+  }
+
+  //Great, we got the length and our touseArray built with the options they want. Lets build the password:
+  for (let i = 0; i < passLength; i++) {
+    newLetter = touseArrays[Math.floor(Math.random() * touseArrays.length)];
+    emptyPassword += newLetter;
+  }
+
+  //Now that its built I could just return the value. But, instead, I have some fun here depending on what options were taken ;)
+  if (notenoughOptions == 4 && passLength == 128) {
+    alert("You picked MAXIMUM OPTIONS™️ for MAXIMUM SECURITY™️");
+    return emptyPassword;
+  } else if (passLength >= 60) {
+    alert("Jeez, Goodluck remembering that");
+    return emptyPassword;
+  } else if (notenoughOptions == 4) {
+    alert("You picked all the options -- Lookin' Secure");
+    return emptyPassword;
+  } else {
+    alert("Enjoy the password!");
+    return emptyPassword;
+   }
 }
 
-// Both called at end of writePassword, resets the pass generation for next btn press
-function resetPassword() {
-  emptyPassword = "";
-}
-
-function emptyArray() {
+// Called at end of writePassword, resets the pass generation for next btn press
+function resetAll() {
   touseArrays = [];
+  newLetter = "";
+  emptyPassword = "";
 }
 
 // Main func, writePassword is called when gnerateBtn is clicked
 function writePassword() {
-  var password = generatePassword();
+  var password = beginPrompt();
   passwordText.value = password;
-  resetPassword();
-  emptyArray();
+  resetAll();
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", beginPrompt);
+generateBtn.addEventListener("click", writePassword);
 
