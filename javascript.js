@@ -18,22 +18,23 @@ var emptyPassword = "";
 // Password:
 var generateBtn = document.getElementById("generate");
 var passwordText = document.getElementById("password");
-// Checkboxes:
-var lwrcaseBox = document.getElementById("useLwrcase");
-var uprcaseBox = document.getElementById("useUprcase");
-var specialsBox = document.getElementById("useSpecials");
-var numbersBox = document.getElementById("useNumbers");
-// Slider:
-var slider = document.getElementById("passLengthSlider");
-var output = document.getElementById("passLengthText");
+
 
 //FUNCTIONS
+
+function beginPrompt() {
+  var passLength = prompt("What is the desired password length?", "Choose between 8 and 128");
+  if (8<=passLength<=128) {
+    var passLength = prompt("You chose a length out of bounds.", "Please - choose between 8 and 128");
+  }
+}
+
 
 // Called in beginning of writePassword, generates the password
 function generatePassword() {
 
     if (!lwrcaseBox.checked && !uprcaseBox.checked && !specialsBox.checked && !numbersBox.checked) {
-      emptyPassword = "Check some boxes ya dingus";
+      emptyPassword = "You must make appropriate selections in the given criteria";
       return emptyPassword;
     }
     
@@ -78,19 +79,5 @@ function writePassword() {
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", beginPrompt);
 
-
-
-
-// SLIDER CODE:
-
-output.value = slider.value; // Display the default slider value
-// Updates the other input method when its correspondent is changed (e.g. slider moves when numbers are typed in box)
-slider.oninput = function() {
-  output.value = this.value;
-}
-
-output.oninput = function() {
-  slider.value = this.value;
-}
