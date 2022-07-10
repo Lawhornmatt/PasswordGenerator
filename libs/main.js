@@ -45,7 +45,7 @@ xkcdBox.addEventListener("click", optionChckbx.checkXKCDbox);
 
 
 // Called in beginning of writePassword, generates the password
-function generatePassword() {
+function genDefaultPassword() {
 
     if (!lwrcaseBox.checked && !uprcaseBox.checked && !specialsBox.checked && !numbersBox.checked) {
       emptyPassword = "Please check at least one option box at minimum";
@@ -86,7 +86,15 @@ function emptyArray() {
 
 // Main func, writePassword is called when gnerateBtn is clicked
 function writePassword() {
-  var password = generatePassword();
+  if (dfltBox.checked) {
+    var password = genDefaultPassword();
+  } 
+  else if (xkcdBox.checked) {
+    var password = genXKCDPassword();    
+  }
+  else {
+    var password = "Error: Please chose just one password style option"
+  }
   passwordText.value = password;
   resetPassword();
   emptyArray();
