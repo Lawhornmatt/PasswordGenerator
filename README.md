@@ -1,7 +1,8 @@
 ## WELCOME:
 This is the README.md for the Challenge THREE "Password Generator" for the UT Coding Bootcamp.
 
-This is a website featuring javascript enabling you to generate random strings of characters depending on your preferences. <br>
+This is a website featuring javascript enabling you to generate random strings of characters depending on your preferences.
+
 Use them for a password if you so choose!
 
 ## HOW TO:
