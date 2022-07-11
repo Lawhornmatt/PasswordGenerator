@@ -21,4 +21,4 @@ Matthew Lawhorn, July 2022
 ## P.s.:
 I began greatly expanding my password generator for eventual inclusion with my portfolio. <br>
 On recommendation of my TAs, I have forked my repo and aligned my code closer to the strict GIVEN-WHEN-THEN Acceptence Criteria. <br>
-The homework branch, the one displayed here and in the link, are the application and code intended to be graded.
+The homework branch, the one displayed here and in the link, are the application and code I am submitting to be graded.

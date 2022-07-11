@@ -107,30 +107,6 @@ button[disabled] {
   background: #c0c7cf;
 }
 
-/* Are controlling the Options container  */
-.pass-options {
-  margin: 0 90px 0 90px;
-}
-
-.slidecontainer {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.slider {
-  width: 80%;
-  height: 20px;
-  background: var(--ogoffwht_bluerist);
-  opacity: .5;
-  transition: opacity .25s;
-}
-
-.slider:hover {
-  opacity: 1;
-}
-
 #passLengthText {
   max-width: 50px;
 }

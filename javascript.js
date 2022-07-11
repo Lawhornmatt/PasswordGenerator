@@ -26,23 +26,32 @@ function beginPrompt() {
 
   //A number counter to make sure people chose at least one option
   var notenoughOptions = 0;
+  //A number counter for extra snark
+  var attemptCounter = 0;
 
   //Folks pick how long their password is to be. 
   var passLength = prompt("What is the desired password length?", "Choose between 8 and 128");
-  //If they're cheaky and type in a word, we gotta put their shenanigans to an end.
-  //First we make their input into a number type. If they put in non-number characters, it'll get converted to NaN
+
+  //If they accidentally hit enter immediately
+  if (passLength == "Choose between 8 and 128") {
+    alert("Did you just immediately hit enter? Try a number next time.");
+    emptyPassword = "Please Try Again";
+    return emptyPassword;
+  }
+  //If they're cheaky and type in a word, we put their shenanigans to an end.
+  //First we make their input into a number type. If they put in non-numeric characters, it'll get converted to NaN
   //Also makes sure they didn't put in a decimal.
   passLength = parseInt(passLength);
-  //If its Nan, everything stops and they gotta redo the process
+  //If its NaN, everything stops and they gotta redo the process
   if (Number.isNaN(passLength)) {
     alert("Bruh, that is not a number."); 
     alert("Go google 'what is a number' then come back and try again.");
     emptyPassword = "Please Try Again";
     return emptyPassword;
-  }
+  };
 
-  //If the did put in a number but its not in the given range, they'll loop here indefinitely until they pick right.
-  //I thought about giving them an escape but they can just refresh if they dont wanna play ball.
+  //If they did put in a number but its not in the given range, they'll loop here indefinitely until they pick right.
+  //I thought about giving them an escape, and at first I didn't. Now the loop ends if they INSIST on getting it wrong.
   while (passLength<8 || passLength>128) {
     var passLength = prompt("You chose a length out of bounds.", "Please - choose between 8 and 128");
     //Gotta make sure they didn't put in a non-number this time too, ugh
@@ -54,6 +63,12 @@ function beginPrompt() {
       return emptyPassword;
     } else if (passLength>=8 && passLength<=128) {
       break;
+    } else if (attemptCounter > 3) {
+      alert("Is it that hard to pick a number between 8 and 128??");
+      emptyPassword = "Quit wasting my time";
+      return emptyPassword;
+    } else {
+      attemptCounter++;
     }
   };
 
@@ -99,17 +114,17 @@ function beginPrompt() {
     alert("Your password has to be made with *something*");
     emptyPassword = "Please Try Again"
     return emptyPassword;
-  }
+  };
 
   //Great, we got the length and our touseArray built with the options they want. Lets build the password:
   for (let i = 0; i < passLength; i++) {
     newLetter = touseArrays[Math.floor(Math.random() * touseArrays.length)];
     emptyPassword += newLetter;
-  }
+  };
 
   //Now that its built I could just return the value. But, instead, I have some fun here depending on what options were taken ;)
   if (notenoughOptions == 4 && passLength == 128) {
-    alert("You picked MAXIMUM OPTIONS™️ for MAXIMUM SECURITY™️");
+    alert("You chose MAXIMUM OPTIONS™️ for MAXIMUM SECURITY™️");
     return emptyPassword;
   } else if (passLength >= 60) {
     alert("Jeez, Goodluck remembering that");
@@ -120,7 +135,7 @@ function beginPrompt() {
   } else {
     alert("Enjoy the password!");
     return emptyPassword;
-   }
+  };
 }
 
 // Called at end of writePassword, resets the pass generation for next btn press
